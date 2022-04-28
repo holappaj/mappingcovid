@@ -2,7 +2,7 @@ import json
 
 dic = {}
 
-file = open("C:\workspace\sna\project11\mappingcovid\dataFile.json")
+file = open("dataFile.json")
 dataFile = json.load(file)
  
 for i in dataFile:
