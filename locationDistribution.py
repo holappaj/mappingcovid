@@ -1,4 +1,5 @@
 import json
+from textwrap import indent
 
 dic = {}
 
@@ -17,5 +18,8 @@ for i in dataFile:
             dic[loc] = dic[loc] + 1
         except KeyError:
             dic[loc] = 1
+        
 
 print(dic)
+with open('locationData.json', 'w') as saveFile:
+    json.dump(dic, saveFile, indent=4)
