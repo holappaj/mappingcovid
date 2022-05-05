@@ -1,5 +1,6 @@
 import json
 import numpy as np
+import matplotlib.pyplot as plt
 
 file = open('dataFile.json')
 data = json.load(file)
@@ -18,3 +19,6 @@ sec4 = np.sum(np_ar < 800) - np.sum(np_ar < 600)
 sec5 = np.sum(np_ar < 1000) - np.sum(np_ar < 800)
 sec6 = np.sum(np_ar > 1000)
 print(sec1, sec2, sec3, sec4, sec5, sec6)
+
+plt.hist(ar, 20)
+plt.show()
