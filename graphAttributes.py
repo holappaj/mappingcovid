@@ -39,10 +39,10 @@ if __name__ == "__main__":
     #diameter = nx.diameter(G)
 
     connected_components = [comp for comp in sorted(nx.connected_components(G), key=len, reverse=True)]
-    nmb_connected_components = len(connected_components)
     longest_component = G.subgraph(connected_components[0]).copy()
     diameter_of_comp = nx.diameter(longest_component)
 
+    num_connected_components = nx.number_connected_components(G)
     avg_cc = nx.average_clustering(G)
     degree_data = nx.degree_centrality(G)
     closeness_data = nx.closeness_centrality(G)
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     #nx.draw_networkx(G)
     #plt.show()
 
-    print(nodes, edges, diameter_of_comp, nmb_connected_components, avg_cc, avg_degree, avg_closeness)
+    print(nodes, edges, diameter_of_comp, num_connected_components, avg_cc, avg_degree, avg_closeness)
     #nodes: 126
     #edges: 186
     #graph is not connected -> diameter is infinity
