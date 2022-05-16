@@ -39,17 +39,29 @@ def createDistValue(file):
     return dic2
 
 def drawGraph(data):
+    fig = plt.figure(figsize=(10,5))
     for i in data:
         x = i
         y = data[i]
         plt.scatter(x, y, c='red')
     plt.show()
+    fig.savefig('locationDistPicOrig.jpg', bbox_inches='tight', dpi=300)
 
-if __name__ == "__main__":
+""" if __name__ == "__main__":
     openedData = openFile("dataFile.json")
-    createDistribution(openedData)
+    createDistribution(openedData)w
     saveFile(dic, 'locationData.json')
     newData = openFile("locationData.json")
+    createDistValue(newData)
+    saveFile(dic2, 'locationNumbers.json')
+    drawGraph(dic2)
+ """
+
+if __name__ == "__main__":
+    #openedData = openFile("dataFile.json")
+    #createDistribution(openedData)
+    #saveFile(dic, 'locationData.json')
+    newData = openFile("cleanedLocationData.json")
     createDistValue(newData)
     saveFile(dic2, 'locationNumbers.json')
     drawGraph(dic2)
