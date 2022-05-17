@@ -22,7 +22,7 @@ def get_avg(dic, nodes):
 def boxplot(data):
     fig = plt.figure(figsize =(7, 7))
     ax = fig.add_subplot()
-    ax.set_xticklabels(['degree centrality', 'closeness centrality'])
+    ax.set_xticklabels(['degree centrality', 'local clustering coefficient'])
 
     plt.boxplot(data)
     plt.show()
@@ -60,20 +60,26 @@ if __name__ == "__main__":
     #connected components: 11
     #average clustering coefficient: 0.08453372905753857
     #average degree centrality: 0.023619047619047633
-    #average degree closeness centrality: 0.20470759143266876
+    #average closeness centrality: 0.20470759143266876
 
 
     #plotting
     degree_values = [degree_data[node] for node in degree_data]
-    closeness_values = [closeness_data[node] for node in closeness_data]
+    #closeness_values = [closeness_data[node] for node in closeness_data]
+
+    #local clustering coefficient
+    node_cc = nx.clustering(G)
+    local_cc_values = [node_cc[node] for node in node_cc]
 
     fig = plt.figure()
     gs = fig.add_gridspec(2, hspace=0.5)
     axs = gs.subplots()
-    axs[0].hist(degree_values, 20)
+    axs[0].hist(degree_values, 12, range=(0, 0.12))
     axs[0].set_title('degree centrality')
-    axs[1].hist(closeness_values, 20)
-    axs[1].set_title('closeness centrality')
+    #axs[1].hist(closeness_values, 20)
+    #axs[1].set_title('closeness centrality')
+    axs[1].hist(local_cc_values, 10)
+    axs[1].set_title('local clustering coefficient')
     plt.show()
 
-    boxplot([degree_values, closeness_values])
+    boxplot([degree_values, local_cc_values])
