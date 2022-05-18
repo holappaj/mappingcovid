@@ -1,6 +1,10 @@
 import json
 from pandas import DataFrame
 
+def saveFile(dictionary, filename):
+    with open(filename, 'w') as saveFile:
+        json.dump(dictionary, saveFile, indent=4)
+
 if __name__ == "__main__":
     file = open('communitiesData.json')
     data = json.load(file)
@@ -40,3 +44,29 @@ if __name__ == "__main__":
     #11          11          [29, 16, 13, 11, 10, 5, 5, 4, 4, 3, 3, 2]
     #12          12       [23, 16, 13, 11, 10, 6, 5, 5, 4, 4, 3, 3, 2]
     #13          13   [16, 13, 12, 11, 11, 10, 6, 5, 5, 4, 4, 3, 3, 2]
+
+    repData = open('nameRep.json')
+    repData = json.load(repData)
+    overallList = []
+    averageList = []
+
+    for i in data[str(13)]:
+        score = 0
+        divider = 0
+        for name in i:
+            divider += 1
+            try:
+                score += int(repData[name])
+            except:
+                score +=0
+#        try:
+#            dic5[score] = dic5[score] + 1
+#        except KeyError:
+#            dic5[score] = 1
+        point = (score / divider)
+        overallList.append(score)
+        averageList.append(point)
+    print(averageList)
+#    print(dic5)
+    print(overallList)
+#    saveFile(dic5, 'reputationClusters.json')
